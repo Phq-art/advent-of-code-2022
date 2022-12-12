@@ -12,9 +12,8 @@ public class Main {
         // Day 1
         try {
             Day1 day1 = new Day1();
-            List<Integer> result = day1.getElveCarryingHighestAmountOfCalories();
-            System.out.println("Index of Elve " + result.get(0));
-            System.out.println("Total amount of calories being carried " + result.get(1));
+            int result = day1.getElveCarryingHighestAmountOfCalories();
+            System.out.println("Total amount of calories being carried by top three calory carrier elves " + result);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

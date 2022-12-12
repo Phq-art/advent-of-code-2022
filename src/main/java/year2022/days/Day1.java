@@ -15,12 +15,15 @@ public class Day1 extends Day {
         super(2022, 1);
     }
 
-    public List<Integer> getElveCarryingHighestAmountOfCalories() throws IOException {
+    public int getElveCarryingHighestAmountOfCalories() throws IOException {
         File calories = getResource("calories.txt");
-        List<Integer> result = new ArrayList<>();
+        List<Integer> allCaloryCarries = new ArrayList<>();
+        // initialize in order to get the first three values
+        allCaloryCarries.add(0);
+        allCaloryCarries.add(0);
+        allCaloryCarries.add(0);
 
         BufferedReader br = new BufferedReader(new FileReader(calories));
-        int position = 0;
         int caloryValue = 0;
         int tempCaloryValue = 0;
         String currentElve;
@@ -29,17 +32,27 @@ public class Day1 extends Day {
             currentElve = br.readLine().trim();
             if(currentElve.isEmpty()) {
                 if(tempCaloryValue > caloryValue) {
-                    caloryValue = tempCaloryValue;
-                };
-                tempCaloryValue = 0;
-                position++;
+                    if(allCaloryCarries.get(0) < tempCaloryValue) {
+                        allCaloryCarries.add(0, tempCaloryValue);
+                        tempCaloryValue = 0;
+                    }
+                    else if(allCaloryCarries.get(1) < tempCaloryValue) {
+                        allCaloryCarries.add(1, tempCaloryValue);
+                        tempCaloryValue = 0;
+                    }
+                    else if(allCaloryCarries.get(2) < tempCaloryValue) {
+                        allCaloryCarries.add(2, tempCaloryValue);
+                        tempCaloryValue = 0;
+                    }
+                    else {
+                        tempCaloryValue = 0;
+                    }
+                }
             }
             else {
                 tempCaloryValue += Integer.parseInt(currentElve);
             }
         }
-        result.add(position);
-        result.add(caloryValue);
-        return result;
+        return allCaloryCarries.get(0) + allCaloryCarries.get(1) + allCaloryCarries.get(2);
     }
 }
