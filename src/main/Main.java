@@ -20,7 +20,7 @@ public class Main {
         // Day 2
         try {
             Day2 day2 = new Day2();
-            int result = day2.getRockPaperScissorsMatchScore();
+            int result = day2.getRockPaperScissorsMatchScorePartTwo();
             System.out.println("Match score: " + result);
         } catch (IOException e) {
             throw new RuntimeException(e);
